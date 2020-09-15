@@ -36,7 +36,7 @@ class Devise::MasqueradesController < DeviseController
       send(:"current_#{masquerading_resource_name}")
     end
 
-    if masquerading_resource_class != masqueraded_resource_class
+    if masquerading_resource_class == masqueraded_resource_class
       sign_out(send("current_#{masqueraded_resource_name}"))
     end
 
@@ -114,7 +114,7 @@ class Devise::MasqueradesController < DeviseController
   end
 
   def after_masquerade_path_for(resource)
-    '/'
+    coach_path
   end
 
   def after_masquerade_full_path_for(resource)
@@ -122,7 +122,7 @@ class Devise::MasqueradesController < DeviseController
   end
 
   def after_back_masquerade_path_for(resource)
-    '/'
+    coaches_path
   end
 
   def save_masquerade_owner_session
